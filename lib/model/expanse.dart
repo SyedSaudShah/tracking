@@ -1,7 +1,5 @@
-// expense.dart
-import 'package:hive/hive.dart';
+import 'package:tracking/exports/exports.dart';
 
-// Marking the Expense class with HiveType and providing the correct typeId
 @HiveType(typeId: 0)
 class Expense extends HiveObject {
   @HiveField(0)

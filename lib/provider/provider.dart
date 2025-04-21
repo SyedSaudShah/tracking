@@ -1,7 +1,4 @@
-// expense_provider.dart
-import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:tracking/model/expanse.dart';
+import 'package:tracking/exports/exports.dart';
 
 class ExpenseProvider with ChangeNotifier {
   late Box<Expense> _expenseBox;

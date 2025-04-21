@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:tracking/Home.dart';
-import 'package:tracking/model/expanse.dart';
-import 'package:tracking/provider/provider.dart';
+import 'exports/exports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
