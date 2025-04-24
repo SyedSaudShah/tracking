@@ -3,6 +3,8 @@ export 'package:hive_flutter/hive_flutter.dart';
 export 'package:provider/provider.dart';
 export 'package:tracking/home.dart';
 export 'package:tracking/model/expanse.dart';
+export 'package:google_fonts/google_fonts.dart';
 export 'package:tracking/provider/provider.dart';
+export 'package:tracking/exports/exports.dart';
 export 'package:hive/hive.dart';
 export 'dart:math';

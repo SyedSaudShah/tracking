@@ -1,4 +1,5 @@
-import 'package:tracking/exports/exports.dart';
+import '../exports/exports.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 @HiveType(typeId: 0)
 class Expense extends HiveObject {
@@ -11,7 +12,64 @@ class Expense extends HiveObject {
   @HiveField(2)
   DateTime date;
 
-  Expense({required this.amount, required this.category, required this.date});
+  String? id; // Firestore document ID
+
+  Expense({
+    required this.amount,
+    required this.category,
+    required this.date,
+    this.id,
+  });
+
+  // Convert Expense to Map for Firestore
+  Map<String, dynamic> toFirestore() {
+    return {
+      'amount': amount,
+      'category': category,
+      'date': Timestamp.fromDate(date),
+    };
+  }
+
+  // Create Expense from Firestore document
+  static Expense fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    return Expense(
+      id: doc.id,
+      amount: data['amount'] ?? 0.0,
+      category: data['category'] ?? '',
+      date: (data['date'] as Timestamp).toDate(),
+    );
+  }
+
+  // Save expense to Firestore
+  Future<void> saveToFirestore() async {
+    final collection = FirebaseFirestore.instance.collection('expenses');
+    if (id != null) {
+      await collection.doc(id).set(toFirestore());
+    } else {
+      final docRef = await collection.add(toFirestore());
+      id = docRef.id;
+    }
+  }
+
+  // Delete expense from Firestore
+  Future<void> deleteFromFirestore() async {
+    if (id != null) {
+      await FirebaseFirestore.instance.collection('expenses').doc(id).delete();
+    }
+  }
+
+  // Get all expenses from Firestore
+  static Stream<List<Expense>> getAllExpenses() {
+    return FirebaseFirestore.instance
+        .collection('expenses')
+        .orderBy('date', descending: true)
+        .snapshots()
+        .map(
+          (snapshot) =>
+              snapshot.docs.map((doc) => Expense.fromFirestore(doc)).toList(),
+        );
+  }
 }
 
 // ExpenseAdapter is automatically generated when you run the build_runner
