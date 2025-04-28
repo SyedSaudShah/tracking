@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tracking/screens/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'exports/exports.dart';
@@ -31,19 +32,36 @@ void main() async {
   final provider = ExpenseProvider();
   await provider.init();
 
-  runApp(ChangeNotifierProvider.value(value: provider, child: const MyApp()));
+  runApp(ChangeNotifierProvider.value(value: provider, child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Expense Tracker',
+      title: 'Tracking App',
       theme: ThemeData(primarySwatch: Colors.teal),
-      debugShowCheckedModeBanner: false,
-      home: const SignupScreen(),
+      home: AuthCheck(),
+    );
+  }
+}
+
+class AuthCheck extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasData) {
+          // User is signed in, navigate to the Home screen
+          return HomeScreen();
+        } else {
+          // User is not signed in, show Login screen
+          return SignupScreen();
+        }
+      },
     );
   }
 }
