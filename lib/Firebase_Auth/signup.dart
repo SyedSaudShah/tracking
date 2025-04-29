@@ -26,7 +26,7 @@ class FirebaseAuthService {
 
       // Navigate to home screen after successful signup
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute<HomeScreen>(builder: (context) => const HomeScreen()),
       );
     } on FirebaseAuthException catch (e) {
       String message = 'Signup failed';

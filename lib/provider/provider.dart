@@ -6,7 +6,7 @@ class ExpenseProvider with ChangeNotifier {
   late Box<Expense> _expenseBox;
   List<Expense> _expenses = [];
   bool _isLoading = false;
-  StreamSubscription? _firebaseSubscription;
+  StreamSubscription<List<Expense>>? _firebaseSubscription;
 
   ExpenseProvider() {
     _initializeFirebaseListener();

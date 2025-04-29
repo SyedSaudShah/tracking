@@ -1,8 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:tracking/exports/exports.dart';
 import 'package:tracking/screens/login.dart';
 
@@ -44,7 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
       // Navigate to home screen on success
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute<HomeScreen>(builder: (context) => const HomeScreen()),
       );
     } on FirebaseAuthException catch (e) {
       _showError(e.message ?? "Signup failed");
@@ -195,7 +193,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: TextButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(
+                      MaterialPageRoute<LoginScreen>(
                         builder: (context) {
                           return const LoginScreen();
                         },

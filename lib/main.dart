@@ -36,9 +36,12 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tracking App',
       theme: ThemeData(primarySwatch: Colors.teal),
       home: AuthCheck(),
@@ -47,6 +50,8 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthCheck extends StatelessWidget {
+  const AuthCheck({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
