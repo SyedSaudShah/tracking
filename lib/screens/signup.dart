@@ -1,8 +1,6 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tracking/exports/exports.dart';
-import 'package:tracking/screens/login.dart';
+import '../exports/exports.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

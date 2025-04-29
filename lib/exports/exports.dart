@@ -8,3 +8,7 @@ export 'package:tracking/provider/provider.dart';
 export 'package:tracking/exports/exports.dart';
 export 'package:hive/hive.dart';
 export 'dart:math';
+export 'package:tracking/screens/login.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'package:tracking/screens/signup.dart';
+export 'package:firebase_core/firebase_core.dart';

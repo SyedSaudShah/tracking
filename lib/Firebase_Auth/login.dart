@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tracking/exports/exports.dart';
 
 Future<String?> loginWithEmailAndPassword(String email, String password) async {
   try {

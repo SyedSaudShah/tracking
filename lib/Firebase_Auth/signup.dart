@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tracking/exports/exports.dart';
 
 class FirebaseAuthService {
@@ -24,7 +23,6 @@ class FirebaseAuthService {
         password: password,
       );
 
-      // Navigate to home screen after successful signup
       Navigator.of(context).pushReplacement(
         MaterialPageRoute<HomeScreen>(builder: (context) => const HomeScreen()),
       );

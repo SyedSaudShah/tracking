@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import '../exports/exports.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(
+        // ignore: use_build_context_synchronously
         context,
       ).showSnackBar(const SnackBar(content: Text('Login successful!')));
 
@@ -194,7 +194,6 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // TODO: Add signup screen navigation here
                     // Navigator.push(context, MaterialPageRoute(builder: (_) => SignupScreen()));
                   },
                   child: const Text(

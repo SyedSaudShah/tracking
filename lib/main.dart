@@ -1,6 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tracking/screens/signup.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'exports/exports.dart';
 
 void main() async {
@@ -36,8 +33,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,8 +45,6 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthCheck extends StatelessWidget {
-  const AuthCheck({super.key});
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
