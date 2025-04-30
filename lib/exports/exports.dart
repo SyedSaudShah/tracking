@@ -1,7 +1,7 @@
 export 'package:flutter/material.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:provider/provider.dart';
-export 'package:tracking/home.dart';
+export 'package:tracking/home.dart' hide HomeScreen;
 export 'package:tracking/model/expanse.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:tracking/provider/provider.dart';

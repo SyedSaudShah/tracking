@@ -1,4 +1,5 @@
 import 'package:tracking/exports/exports.dart';
+import 'package:tracking/home.dart';
 
 class FirebaseAuthService {
   static Future<void> signUpWithEmailPassword(

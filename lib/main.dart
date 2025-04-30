@@ -1,9 +1,12 @@
+// ignore_for_file: avoid_print
+
+import 'package:tracking/home.dart' as home;
+
 import 'exports/exports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // ✅ Safe Firebase initialization
   try {
     if (Firebase.apps.isEmpty) {
       await Firebase.initializeApp(
@@ -33,6 +36,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,6 +49,8 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthCheck extends StatelessWidget {
+  const AuthCheck({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
@@ -54,10 +60,9 @@ class AuthCheck extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         } else if (snapshot.hasData) {
           // User is signed in, navigate to the Home screen
-          return HomeScreen();
+          return home.HomeScreen();
         } else {
-          // User is not signed in, show Login screen
-          return SignupScreen();
+          return SignupScreen(); // Ensure SignupScreen is defined or imported
         }
       },
     );

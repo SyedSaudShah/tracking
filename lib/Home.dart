@@ -69,6 +69,21 @@ class _HomeScreenState extends State<HomeScreen>
     }
   }
 
+  Future<void> _logout(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      // Navigate to login screen or root
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+    } catch (e) {
+      // Optionally show error
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Logout failed: $e')));
+    }
+  }
+
   Future<void> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
       context: context,
@@ -121,9 +136,11 @@ class _HomeScreenState extends State<HomeScreen>
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      // This line removes the back arrow
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 52, 60, 82),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           '💰 Expense Tracker',
           style: TextStyle(color: Colors.white),
@@ -131,6 +148,12 @@ class _HomeScreenState extends State<HomeScreen>
         backgroundColor: const Color.fromARGB(255, 52, 60, 82),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
+        actions: [
+          TextButton(
+            onPressed: () => _logout(context),
+            child: Text('Log out', style: TextStyle(color: Colors.white)),
+          ),
+        ],
       ),
       body: GestureDetector(
         onHorizontalDragEnd: (details) {
@@ -200,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen>
                           child: Text(
                             'Rs. ${provider.totalSpending.toStringAsFixed(2)}',
                             style: GoogleFonts.orbitron(
-                              fontSize: 32,
+                              fontSize: 28,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
